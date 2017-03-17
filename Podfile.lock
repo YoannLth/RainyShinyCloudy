@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.3.0)
+  - Timberjack (0.0.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.0)
+  - Timberjack (from `https://github.com/gilthonweapps/Timberjack`)
+
+EXTERNAL SOURCES:
+  Timberjack:
+    :git: https://github.com/gilthonweapps/Timberjack
+
+CHECKOUT OPTIONS:
+  Timberjack:
+    :commit: be71ad7009fdf6a6e339bc6ec354a9c720bca4da
+    :git: https://github.com/gilthonweapps/Timberjack
+
+SPEC CHECKSUMS:
+  Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
+  Timberjack: 4181fb4fa5c0c02a0855deb5aa1ade6043db7b42
+
+PODFILE CHECKSUM: 48a63c38fcceb402933d56b7edd4d4da390a6d76
+
+COCOAPODS: 1.2.0
