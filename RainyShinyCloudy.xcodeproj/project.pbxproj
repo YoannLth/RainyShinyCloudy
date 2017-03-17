@@ -15,6 +15,7 @@
 		CD22B7471E7BCC7900C7E680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD22B7451E7BCC7900C7E680 /* LaunchScreen.storyboard */; };
 		CD22B74F1E7BCDE000C7E680 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CD22B74E1E7BCDE000C7E680 /* Podfile */; };
 		CD22B7521E7BD08300C7E680 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CD22B7511E7BD08300C7E680 /* .gitignore */; };
+		CD22B7541E7BD14D00C7E680 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = CD22B7531E7BD14D00C7E680 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CD22B7481E7BCC7900C7E680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CD22B74E1E7BCDE000C7E680 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		CD22B7511E7BD08300C7E680 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		CD22B7531E7BD14D00C7E680 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,16 +75,25 @@
 		CD22B73B1E7BCC7900C7E680 /* RainyShinyCloudy */ = {
 			isa = PBXGroup;
 			children = (
+				CD22B7551E7BD26F00C7E680 /* Config */,
 				CD22B73C1E7BCC7900C7E680 /* AppDelegate.swift */,
 				CD22B73E1E7BCC7900C7E680 /* ViewController.swift */,
 				CD22B7401E7BCC7900C7E680 /* Main.storyboard */,
 				CD22B7431E7BCC7900C7E680 /* Assets.xcassets */,
 				CD22B7451E7BCC7900C7E680 /* LaunchScreen.storyboard */,
+			);
+			path = RainyShinyCloudy;
+			sourceTree = "<group>";
+		};
+		CD22B7551E7BD26F00C7E680 /* Config */ = {
+			isa = PBXGroup;
+			children = (
 				CD22B7481E7BCC7900C7E680 /* Info.plist */,
 				CD22B74E1E7BCDE000C7E680 /* Podfile */,
 				CD22B7511E7BD08300C7E680 /* .gitignore */,
+				CD22B7531E7BD14D00C7E680 /* .swiftlint.yml */,
 			);
-			path = RainyShinyCloudy;
+			name = Config;
 			sourceTree = "<group>";
 		};
 		D59B59728B68AC062AA9E033 /* Pods */ = {
@@ -158,6 +169,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD22B7541E7BD14D00C7E680 /* .swiftlint.yml in Resources */,
 				CD22B7521E7BD08300C7E680 /* .gitignore in Resources */,
 				CD22B7471E7BCC7900C7E680 /* LaunchScreen.storyboard in Resources */,
 				CD22B7441E7BCC7900C7E680 /* Assets.xcassets in Resources */,
