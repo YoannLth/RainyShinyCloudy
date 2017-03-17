@@ -2,7 +2,7 @@ disabled_rules: # some rules are only opt-in
 #- empty_count
 #- missing_docs
 #- trailing_newline
-#- trailing_whitespace
+- trailing_whitespace
 - vertical_whitespace
 #- todo
 #- cyclomatic_complexity
