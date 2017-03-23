@@ -55,11 +55,8 @@ class CurrentWeather {
     return _currentTemp
   }
   
-  func downloadWeatherDetails() {
-    let lat = "35"
-    let lon = "-123"
-    
-    let url = "\(Const.BaseURL)lat=\(lat)&lon=\(lon)&appid=\(Const.APIKey)"
+  func downloadWeatherDetails(completion: @escaping () -> Void) {
+    let url = "\(Const.baseURL)weather?lat=\(Const.latitude)&lon=\(Const.longitude)&appid=\(Const.APIKey)"
     
     Alamofire.request(url).responseJSON { response in
       let result = response.result
@@ -67,8 +64,8 @@ class CurrentWeather {
       switch result {
       case .success(let value):
         let json = JSON(value)
-        print("JSON: \(json)")
         self.parseJSON(json: json)
+        completion()
       case .failure(let error):
         print(error)
       }
