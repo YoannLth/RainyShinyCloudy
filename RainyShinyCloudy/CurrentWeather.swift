@@ -56,7 +56,7 @@ class CurrentWeather {
   }
   
   func downloadWeatherDetails(completion: @escaping () -> Void) {
-    let url = "\(Const.baseURL)weather?lat=\(Const.latitude)&lon=\(Const.longitude)&appid=\(Const.APIKey)"
+    let url = "\(Const.baseURL)weather?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&appid=\(Const.APIKey)"
     
     Alamofire.request(url).responseJSON { response in
       let result = response.result

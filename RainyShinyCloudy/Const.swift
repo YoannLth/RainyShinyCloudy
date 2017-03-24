@@ -11,6 +11,4 @@ import Foundation
 public struct Const {
   static let APIKey = "4278d3937e8e6122cf15f8781fd942c8"
   static let baseURL = "http://api.openweathermap.org/data/2.5/"
-  static let latitude = "35"
-  static let longitude = "139"
 }

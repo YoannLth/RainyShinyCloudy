@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
 class WeatherVC: UIViewController {
 
@@ -25,6 +26,8 @@ class WeatherVC: UIViewController {
   // MARK: - Variables
   var currentWeather = CurrentWeather()
   var forecasts = [Forecast]()
+  let locationManager = CLLocationManager()
+  var currentLocation: CLLocation!
   
   // MARK: - Lifecycle
   override func viewDidLoad() {
@@ -32,12 +35,18 @@ class WeatherVC: UIViewController {
     
     tableView.delegate = self
     tableView.dataSource = self
+    locationManager.delegate = self
     
-    currentWeather.downloadWeatherDetails(completion: {
-      self.downloadForecastData(completion: {
-        self.updateUI()
-      })
-    })
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    locationManager.requestWhenInUseAuthorization()
+    locationManager.startMonitoringSignificantLocationChanges()
+    
+    dateLabel.text = ""
+    tempLabel.text = "--°C"
+    cityLabel.text = ""
+    weatherLabel.text = ""
+    
+    locationAuthStatus()
   }
   
   
@@ -46,7 +55,7 @@ class WeatherVC: UIViewController {
   // MARK: - Functions
   func updateUI() {
     dateLabel.text = currentWeather.date
-    tempLabel.text = "\(currentWeather.currentTemp)"
+    tempLabel.text = String(format: "%.1f°C", currentWeather.currentTemp)
     cityLabel.text = currentWeather.cityName
     weatherLabel.text = currentWeather.weatherType
     weatherImage.image = UIImage(named: currentWeather.weatherType) ?? UIImage()
@@ -56,7 +65,7 @@ class WeatherVC: UIViewController {
   
   func downloadForecastData(completion: @escaping () -> Void) {
     let cnt = "10"
-    let url = "\(Const.baseURL)forecast/daily?lat=\(Const.latitude)&lon=\(Const.longitude)&cnt=\(cnt)&appid=\(Const.APIKey)"
+    let url = "\(Const.baseURL)forecast/daily?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&cnt=\(cnt)&appid=\(Const.APIKey)"
     
     Alamofire.request(url).responseJSON { response in
       let result = response.result
@@ -78,6 +87,23 @@ class WeatherVC: UIViewController {
         let forecast = Forecast(weatherDict: obj)
         forecasts.append(forecast)
       }
+      forecasts.remove(at: 0)
+    }
+  }
+  
+  func locationAuthStatus() {
+    if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+      currentLocation = locationManager.location
+      Location.sharedInstance.latitude = currentLocation.coordinate.latitude
+      Location.sharedInstance.longitude = currentLocation.coordinate.longitude
+      
+      currentWeather.downloadWeatherDetails(completion: {
+        self.downloadForecastData(completion: {
+          self.updateUI()
+        })
+      })
+    } else {
+      locationManager.requestWhenInUseAuthorization()
     }
   }
 }
@@ -104,4 +130,12 @@ extension WeatherVC: UITableViewDataSource, UITableViewDelegate {
     
     return WeatherCell()
   }
+}
+
+
+
+
+// MARK: - CoreLocation
+extension WeatherVC: CLLocationManagerDelegate {
+  
 }
